@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="PageFirst" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clicknever.controllers.Controller">
+   <children>
+      <TabPane layoutX="1.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab styleClass="TableAbas" text="Clicker">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <Button layoutX="300.0" layoutY="235.0" mnemonicParsing="false" onAction="#startClickers" text="Button" AnchorPane.bottomAnchor="209.0" AnchorPane.rightAnchor="248.0" />
+                        <TextField fx:id="tfVezes" layoutX="131.0" layoutY="235.0" AnchorPane.bottomAnchor="209.0" AnchorPane.rightAnchor="320.0" />
+                        <HBox alignment="CENTER" layoutX="3.0" layoutY="135.0" prefHeight="100.0" prefWidth="594.0" AnchorPane.bottomAnchor="234.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="135.0">
+                           <children>
+                              <RadioButton fx:id="rb1" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" selected="true" styleClass="RadioButtons" text="1c/s" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Segoe UI Bold Italic" size="11.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="groupVelocidade" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rb2" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" styleClass="RadioButtons" text="0.1c/s" toggleGroup="$groupVelocidade">
+                                 <font>
+                                    <Font name="Segoe UI Bold Italic" size="11.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rb3" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" styleClass="RadioButtons" text="0.01c/s" toggleGroup="$groupVelocidade">
+                                 <font>
+                                    <Font name="Segoe UI Bold Italic" size="11.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rb4" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" styleClass="RadioButtons" text="0.001c/s" toggleGroup="$groupVelocidade">
+                                 <font>
+                                    <Font name="Segoe UI Bold Italic" size="11.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <Text fx:id="lbText" layoutX="400.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tempo pra começar" wrappingWidth="202.13671875" AnchorPane.bottomAnchor="14.7294921875" AnchorPane.rightAnchor="3.86328125">
+                           <font>
+                              <Font name="Segoe UI Bold" size="21.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tfH" layoutX="47.0" layoutY="371.0" prefHeight="29.0" prefWidth="40.0" promptText="h" text="11" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="513.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="tfM" layoutX="95.0" layoutY="371.0" prefHeight="29.0" prefWidth="38.0" promptText="m" text="11" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="467.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="tfS" layoutX="143.0" layoutY="371.0" prefHeight="29.0" prefWidth="38.0" promptText="s" text="11" AnchorPane.bottomAnchor="69.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="lbTime" alignment="CENTER" contentDisplay="BOTTOM" layoutX="47.0" layoutY="341.0" prefHeight="30.0" prefWidth="138.0" text="0:0:0" textAlignment="CENTER" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="341.0">
+                           <font>
+                              <Font name="Segoe UI Black" size="19.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="239.0" layoutY="373.0" mnemonicParsing="false" onAction="#startClickersTime" text="Button" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="309.0" AnchorPane.topAnchor="373.0" />
+                        <Text layoutX="190.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidade" textAlignment="CENTER" wrappingWidth="202.13671875">
+                           <font>
+                              <Font name="Segoe UI Bold" size="21.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tfTimeWait" layoutX="393.0" layoutY="400.0" prefHeight="25.0" prefWidth="130.0" promptText="Tempo para Iniciar" text="5">
+                           <font>
+                              <Font name="Segoe UI Emoji" size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="lbStatus" layoutX="36.0" layoutY="425.0" text="Status" textFill="#fa3320">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="21.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab styleClass="TableAbas" text="MouseClicker">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" layoutX="142.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
+   </children>
+   <effect>
+      <Glow level="0.0" />
+   </effect>
+</AnchorPane>
