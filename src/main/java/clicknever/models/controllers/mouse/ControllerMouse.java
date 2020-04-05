@@ -10,6 +10,8 @@ import org.jnativehook.mouse.NativeMouseListener;
 public class ControllerMouse extends ControllerNative implements NativeMouseListener, NativeMouseInputListener {
 
 
+    public static float mouseX;
+    public static float mouseY;
 
     @Override
     public void nativeMouseClicked(NativeMouseEvent nativeMouseEvent) {
@@ -28,7 +30,8 @@ public class ControllerMouse extends ControllerNative implements NativeMouseList
 
     @Override
     public void nativeMouseMoved(NativeMouseEvent nativeMouseEvent) {
-
+        mouseX = nativeMouseEvent.getX();
+        mouseY = nativeMouseEvent.getY();
     }
 
     @Override

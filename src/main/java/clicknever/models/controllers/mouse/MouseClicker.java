@@ -1,17 +1,24 @@
 package clicknever.models.controllers.mouse;
 
 import clicknever.callback.CallBackListener;
+import clicknever.models.controllers.Mouse;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import static clicknever.controllers.Controller.velocidade;
+import static clicknever.handles.Handlers.isNewMouse;
 
 public class MouseClicker {
-
 
     public static boolean isClickCanActive = true;
 
@@ -23,7 +30,18 @@ public class MouseClicker {
 
     public static boolean isClickerVezes = false;
 
+    public static boolean isClicker = true;
+
+    public static boolean isTime = false;
+
     private static int count;
+
+    private static TableView<Mouse> tvTable;
+
+    public static List<Mouse> mouses = new ArrayList<>();
+
+    private static ComboBox cbIndexAtual;
+    private static ComboBox cbIndexPara;
 
     private static int hours;
     private static int minutos;
@@ -31,9 +49,12 @@ public class MouseClicker {
 
     private static Robot clickers;
 
-    public static void active() {
+    public static void active(TableView<Mouse> tableView, ComboBox smbIndexA, ComboBox smbParaIndex) {
         try {
             clickers = new Robot();
+            tvTable = tableView;
+            cbIndexAtual = smbIndexA;
+            cbIndexPara = smbParaIndex;
         } catch (AWTException e) {
             e.printStackTrace();
         }
@@ -107,7 +128,6 @@ public class MouseClicker {
     }
 
 
-
     private static void timeGo(Text lbText,Label lbTime, CallBackListener call) {
         new Thread(() -> {
             while (isTimeLeave && isClickCanActive) {
@@ -139,6 +159,47 @@ public class MouseClicker {
                 e.printStackTrace();
             }
         }).start();
+    }
 
+
+    public static void newClickMouse() {
+        int index = mouses.size();
+        Mouse mouse = new Mouse(isClicker,isTime,++index).setName("");
+        mouses.add(mouse);
+        cbIndexPara.getEditor().clear();
+        cbIndexAtual.getEditor().clear();
+        attTableDatas();
+        tvTable.refresh();
+    }
+
+    public static void attTableDatas() {
+        isNewMouse = false;
+        cbIndexPara.getEditor().clear();
+        cbIndexAtual.getEditor().clear();
+        List<Integer> list = new ArrayList<>();
+        ObservableList<Mouse> mouseObservable = FXCollections.observableArrayList(mouses);
+        mouseObservable.forEach(k -> {
+            list.add(k.getIndex());
+            if(k.isTime()) {
+                k.setTimeInValue();
+            } else {
+                k.setValueInTime();
+            }
+        });
+        ObservableList<Integer> mouseIndex = FXCollections.observableArrayList(list);
+        try {
+            tvTable.setItems(mouseObservable);
+            cbIndexAtual.setItems(mouseIndex);
+            cbIndexPara.setItems(mouseIndex);
+            tvTable.refresh();
+            Platform.runLater(() -> {
+                cbIndexPara.getEditor().clear();
+                cbIndexAtual.getEditor().clear();
+                cbIndexPara.valueProperty().setValue("");
+            });
+            } catch (Exception e) {
+            System.out.println("DEU UM ERRO AI CARALHO SEU FILHO DA PUTA");
+        }
+        isNewMouse = true;
     }
 }

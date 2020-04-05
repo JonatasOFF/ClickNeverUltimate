@@ -4,8 +4,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
- *
+ * O CASTRO ESTA ME VENDO
+ * abc ?
+ * DFG
  */
 public class Main extends Application {
 
@@ -14,8 +18,13 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/firstPage.fxml"));
+    public void start(Stage primaryStage) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("fxml/firstPage.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.setTitle("TESTANDO");
