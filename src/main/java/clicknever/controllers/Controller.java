@@ -20,7 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static clicknever.callback.CallBack.timeForWait;
+import static clicknever.handles.Handlers.indexAtual;
 import static clicknever.models.controllers.mouse.MouseClicker.*;
+import static clicknever.models.controllers.mouse.ControllerMouse.isNewPosition;
 
 
 public class Controller implements Initializable {
@@ -157,20 +159,25 @@ public class Controller implements Initializable {
         }
     }
 
-    public void onClearTable() {
+    public void onClearTable()
+    {
 
     }
 
     public void onExecuteMouseClicker() {
-
+        clickerMouseControllerExecute();
     }
 
     public void onSetPositionMouse() {
-
+        isNewPosition = true;
     }
 
     public void onDeleteIndex() {
-
+        mouses.remove(indexAtual - 1);
+        for(int i = 0; i < mouses.size(); i++) {
+            mouses.get(i).setIndex(i + 1);
+        }
+        attTableDatas();
     }
 
     public void onEditName(TableColumn.CellEditEvent<Mouse, String> mouseIntegerCellEditEvent) {
