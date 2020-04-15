@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Glow?>
@@ -139,9 +140,27 @@
                      </children></AnchorPane>
                </content>
             </Tab>
+            <Tab styleClass="TableAbas" text="Tutorial">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea focusTraversable="false" layoutY="91.0" prefHeight="374.0" prefWidth="375.0" promptText="ah?" text="Bom dia (mas esta noite ou tarde DANESE), ClickNeverUltimate é a versão final do meu programa Click Never, aqui você verá uso, teclas de uso, e motivos para abandonar esse programa desktop. **O PROGRAMA ESTÁ INACABADO**. F1 = Você para o funcionamento do Clicker que está acontecendo F2 = Pause, você pausa o clicker está acontecendo atualmente (funciona no mouseControler) F3 = Seta para o MouseClicker pegar a posição atual do seu mouse e já setar na tabela, F4 = manda seguir o proximo mouse clicker da tabela (Muito importante se você usar só types Time). O ClickNever tem dois tipos de Clickers o MouseClicker que é o mais util na minha opinião, onde você seta uma posição no seu monitor para ele começar a clickar quantas vezes naquela posição ou ficar clickando por um certo tempo definido nele. É isso" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Black Italic" size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="374.0" layoutY="92.0" prefHeight="376.0" prefWidth="218.0" text="&quot;ClickNever ?, um programa desktop inacabado mas com uma grande idéia. Quem sabe um dia o desenvolvedor acabe com ele&quot; -Desenvolvedor do Programa" textAlignment="CENTER" textFill="#d7eb20" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
          </tabs>
       </TabPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" layoutX="142.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" layoutX="198.0" stroke="BLACK" strokeType="INSIDE" width="402.0" />
       <HBox alignment="CENTER" layoutY="30.0" prefHeight="64.0" prefWidth="261.0">
          <children>
             <RadioButton fx:id="rb1" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" selected="true" styleClass="RadioButtons" text="1c/s" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">

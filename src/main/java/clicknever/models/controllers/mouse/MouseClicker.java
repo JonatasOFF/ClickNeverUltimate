@@ -30,6 +30,8 @@ public class MouseClicker {
 
     public static boolean isClickerVezes = false;
 
+    public static boolean isSkip = true;
+
     public static boolean isClicker = true;
 
     public static boolean isTime = false;
@@ -115,6 +117,7 @@ public class MouseClicker {
 
         isTimeLeave = true;
         isClickCanActive = true;
+        isSkip = true;
 
         timeGo(lbText,lbTime, () -> isTimeLeave = false);
         new Thread(() -> {
@@ -126,11 +129,56 @@ public class MouseClicker {
             }
         }).start();
     }
+    private static void clickVezes(int vezes,int xF, int yF) {
+        isClickCanActive = true;
+
+        count = vezes;
+        //System.out.println(count);
+        new Thread(() -> {
+            try {
+                for(; count > 0 && isClickCanActive; count--) {
+                    //System.out.println(count + " " + isClickerVezes + " " + velocidade);
+                    pauseClicker();
+                    Robot clickers = new Robot();
+                    clickers.mouseMove(xF,yF);
+                    clickers.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                    clickers.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+                    clickers.delay(velocidade);
+                }
+            } catch (AWTException  e) {
+                e.printStackTrace();
+            }
+            isClickerVezes = false;
+        }).start();
+    }
+
+    private static void clickerTime(int h, int m, int s, int x, int y) {
+        hours = h;
+        minutos = m;
+        segundos = s;
+
+        isTimeLeave = true;
+        isClickCanActive = true;
+        isSkip = true;
+
+        timeGo(() -> isTimeLeave = false);
+        new Thread(() -> {
+            while (isTimeLeave && isClickCanActive && isSkip) {
+                pauseClicker();
+                clickers.mouseMove(x,y);
+                clickers.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                clickers.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+                clickers.delay(velocidade);
+                System.out.println("Ate aqui funciono mano ? pq me chamou de trouxa ?");
+            }
+        }).start();
+    }
+
 
 
     private static void timeGo(Text lbText,Label lbTime, CallBackListener call) {
         new Thread(() -> {
-            while (isTimeLeave && isClickCanActive) {
+            while (isTimeLeave && isClickCanActive && isSkip) {
                 if (minutos == 0 && hours != 0) {
                     hours--;
                     minutos = 60;
@@ -161,6 +209,53 @@ public class MouseClicker {
         }).start();
     }
 
+    private static void timeGo(CallBackListener call) {
+        new Thread(() -> {
+            while (isTimeLeave && isClickCanActive) {
+                if (minutos == 0 && hours != 0) {
+                    hours--;
+                    minutos = 60;
+                }
+                if (segundos == 0 && minutos > 0) {
+                    minutos--;
+                    segundos = 60;
+                }
+                segundos--;
+                if(segundos == 0 && minutos == 0) {
+                    isTimeLeave = false;
+                    isClickCanActive = false;
+                }
+                pauseClicker();
+                //System.out.println(hours + ":" + minutos + ":" + segundos);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            call.callBack();
+            isClickerTime = false;
+
+        }).start();
+    }
+
+
+
+    public static void clickerMouseControllerExecute() {
+        if(!mouses.isEmpty()) {
+            mouses.forEach(k -> {
+                if(k.isClick()) {
+                    clickVezes(Integer.parseInt(k.getCount()),k.getX(),k.getY());
+                } else {
+                    try {
+                        clickerTime(k.getTime()[0], k.getTime()[1], k.getTime()[2], k.getX(), k.getY());
+                    } catch (Exception e) {
+                        System.out.println("NAO EXECUTO PQ TU E UM TROUXA OTARIO");
+                    }
+                }
+            });
+        }
+    }
 
     public static void newClickMouse() {
         int index = mouses.size();
@@ -197,8 +292,7 @@ public class MouseClicker {
                 cbIndexAtual.getEditor().clear();
                 cbIndexPara.valueProperty().setValue("");
             });
-            } catch (Exception e) {
-            System.out.println("DEU UM ERRO AI CARALHO SEU FILHO DA PUTA");
+            } catch (Exception ignore) {
         }
         isNewMouse = true;
     }
