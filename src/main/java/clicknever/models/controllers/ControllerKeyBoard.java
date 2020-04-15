@@ -5,8 +5,8 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
-import static clicknever.models.controllers.mouse.MouseClicker.isClickCanActive;
-import static clicknever.models.controllers.mouse.MouseClicker.isPauseClicker;
+import static clicknever.models.controllers.mouse.MouseClicker.*;
+
 
 public class ControllerKeyBoard extends ControllerNative implements NativeKeyListener {
 
@@ -31,6 +31,10 @@ public class ControllerKeyBoard extends ControllerNative implements NativeKeyLis
             setClickStop();
         } else if((NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode())).toUpperCase().equals("F2")) {
             setPauseClicker();
+        } else if((NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode())).toUpperCase().equals("F3")) {
+            newClickMouse();
+        } else if((NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode())).toUpperCase().equals("F4")) {
+            isSkip = false;
         }
     }
 

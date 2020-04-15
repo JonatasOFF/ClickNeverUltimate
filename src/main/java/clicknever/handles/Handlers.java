@@ -18,7 +18,7 @@ public class Handlers {
     private ToggleGroup tgClickOrTime;
     private TextField tfClickersMouseHandler;
 
-    private static int indexAtual = 0;
+    public static int indexAtual = 0;
     private static int indexPara = 0;
 
     public static boolean isNewMouse = true;
