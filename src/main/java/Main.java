@@ -6,11 +6,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * O CASTRO ESTA ME VENDO
- * abc ?
- * DFG
- */
+
 public class Main extends Application {
 
     public static void main(String[] args) {
